@@ -101,9 +101,9 @@ El panel de control incluye:
 
 ## Demo Visual
 
-<video src="DEMO.mp4" controls width="100%"></video>
+[![Ver Demo Completa](capturaDemo.png)](DEMO.mp4)
 
----
+*Haz clic en la imagen para descargar y ver el video completo*
 
 ## Estructura del Proyecto
 
