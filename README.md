@@ -284,32 +284,26 @@ La rotación 2D de un punto alrededor del origen se define mediante la matriz de
 ```
 
 En forma matricial:
+
 ```
-(x'  y') = (x  y) · ( cos θ   sen θ )
-                     (-sen θ   cos θ )
+[ x' ]   [ cos θ  -sen θ ] [ x ]
+[ y' ] = [ sen θ   cos θ ] [ y ]
 ```
 
-#### Implementación en el Sistema Solar
+Aplicado a órbitas circulares:
 
-Para simplificar, trabajamos en el plano XY (rotación sobre el eje Z). Cada planeta comienza en la posición inicial **(dist, 0, 0)**, lo que simplifica las ecuaciones:
-
-```javascript
-// Condición inicial
-x₀ = dist
-y₀ = 0
-
-// Aplicando rotación con ángulo θ(t) = timestamp · velocidad
-x(t) = dist · cos(θ)
-y(t) = dist · sen(θ)
+```
+x(t) = cos(θ) · dist
+y(t) = sen(θ) · dist
 ```
 
 **Variables globales del código:**
 
 ```javascript
-let t0 = 0;        // Tiempo inicial (timestamp) para calcular animaciones
-let accglobal = 0.0003; // Aceleración global que controla la velocidad de las órbitas
-let timestamp;     // Tiempo transcurrido usado en el loop de animación
-let Planetas = []; // Array que almacena todos los planetas
+let t0 = 0;              // Tiempo inicial (timestamp) para calcular animaciones
+let accglobal = 0.0003;  // Aceleración global que controla la velocidad de las órbitas
+let timestamp;           // Tiempo transcurrido usado en el loop de animación
+let Planetas = [];       // Array que almacena todos los planetas
 ```
 
 **Función de creación de planeta (extracto relevante):**
@@ -318,17 +312,16 @@ let Planetas = []; // Array que almacena todos los planetas
 function Planeta(radio, dist, vel, texturePath, f1, f2, name) {
   const geom = new THREE.SphereGeometry(radio * 4, 32, 32);
   const texture = textureLoader.load(texturePath);
-  
   const mat = new THREE.MeshStandardMaterial({
-    map: texture, 
-    roughness: 1, 
-    metalness: 0, 
+    map: texture,
+    roughness: 1,
+    metalness: 0,
     emissive: 0x111111,
     emissiveIntensity: 0.4
   });
-
+  
   const planeta = new THREE.Mesh(geom, mat);
-  planeta.userData = { 
+  planeta.userData = {
     dist,
     speed: vel,
     f1,
@@ -337,20 +330,19 @@ function Planeta(radio, dist, vel, texturePath, f1, f2, name) {
     radius: radio * 4,
     initialAngle: Math.random() * Math.PI * 2
   };
+  
   Planetas.push(planeta);
   scene.add(planeta);
   
+  // Crear órbita visual
   const curve = new THREE.EllipseCurve(0, 0, dist * f1, dist * f2);
   const points = curve.getPoints(200);
-  
   const geome = new THREE.BufferGeometry().setFromPoints(points);
-  
-  const mate = new THREE.LineBasicMaterial({ 
+  const mate = new THREE.LineBasicMaterial({
     color: 0x3399ff,
     opacity: 0.35,
-    transparent: true 
+    transparent: true
   });
-  
   const orbita = new THREE.Line(geome, mate);
   orbita.rotation.x = Math.PI / 2;
   scene.add(orbita);
@@ -640,5 +632,4 @@ const sunLight = new THREE.PointLight(0xffffff, 3, 5000);
 
 ---
 
-[Volver arriba](#sistema-solar-interactivo-con-threejs)#   s i s t e m a - s o l a r - t h r e e j s  
- 
+[Volver arriba](#sistema-solar-interactivo-con-threejs)
