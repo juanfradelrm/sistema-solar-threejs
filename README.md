@@ -4,6 +4,7 @@
 
 - [Descripción](#descripción)
   - [Aspectos Destacados](#aspectos-destacados)
+- [Instalación y Ejecución](#instalación-y-ejecución)
 - [Características mostradas de los planetas](#características-mostradas-de-los-planetas)
   - [Características Visuales](#características-visuales)
   - [Interactividad](#interactividad)
@@ -43,6 +44,9 @@
 
 Este proyecto es una **simulación interactiva del Sistema Solar** desarrollada con **Three.js**, una biblioteca de JavaScript para crear gráficos 3D en el navegador usando WebGL. La aplicación permite explorar nuestro sistema planetario con representaciones visuales, órbitas elípticas y múltiples modos de cámara.
 
+
+
+
 ### Aspectos Destacados
 
 - **9 cuerpos celestes** modelados (Sol + 8 planetas)
@@ -52,6 +56,42 @@ Este proyecto es una **simulación interactiva del Sistema Solar** desarrollada 
 - **Panel de información** con datos reales y de simulación
 - **Dos modos de control** de cámara
 - **Fondo estelar** envolvente
+
+
+## Instalación y ejecución
+
+### Requisitos Previos
+
+- **Node.js** (versión 14 o superior)
+- **npm** o **yarn**
+- Navegador web moderno con soporte para WebGL 2.0
+
+### Opción 1: Clonar y Ejecutar Localmente
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/juanfradelrm/sistema-solar-threejs.git
+
+# 2. Entrar al directorio
+cd sistema-solar-threejs
+
+# 3. Instalar dependencias
+npm install
+
+# 4. Iniciar el servidor de desarrollo
+npm start
+```
+
+La aplicación se abrirá automáticamente en tu navegador en localhost
+
+### Opción 2: Ejecutar en CodeSandbox (Recomendado)
+
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/juanfradelrm/sistema-solar-threejs)
+
+1. Haz clic en el botón de arriba
+2. El proyecto se abrirá directamente en CodeSandbox
+3. Espera a que se instalen las dependencias automáticamente
+4. La simulación se ejecutará en el preview
 
 ---
 
@@ -104,6 +144,7 @@ El panel de control incluye:
 [![Ver Demo Completa](capturaDemo.png)](DEMO.mp4)
 
 *Haz clic en la imagen para descargar y ver el video completo*
+
 
 ## Estructura del Proyecto
 
@@ -633,3 +674,4 @@ const sunLight = new THREE.PointLight(0xffffff, 3, 5000);
 ---
 
 [Volver arriba](#sistema-solar-interactivo-con-threejs)
+
